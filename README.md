@@ -10,8 +10,11 @@ sudo su
 处理预设规则，全部端口开放
 
 iptables -D INPUT -j REJECT --reject-with icmp-host-prohibited
+
 iptables -D FORWARD -j REJECT --reject-with icmp-host-prohibited
+
 /etc/init.d/netfilter-persistent save
+
 /etc/init.d/netfilter-persistent reload
 
 开启 BBR 加速并优化 VPS 设置
@@ -23,11 +26,17 @@ chmod +x tcp.sh
 申请 SSL 证书，更换邮件及解析域名
 
 apt update -y
+
 apt install -y curl
+
 apt install -y socat
+
 curl https://get.acme.sh | sh
+
 ~/.acme.sh/acme.sh --register-account -m xxxx@xxxx.xx
+
 ~/.acme.sh/acme.sh --issue -d xx.xxxx.xx --standalone
+
 ~/.acme.sh/acme.sh --installcert -d xx.xxxx.xx --key-file /root/private.key --fullchain-file /root/cert.crt
 
 安装 x-ui
@@ -57,14 +66,19 @@ systemctl disable firewalld.service
 更新并安装支持
 
 yum update -y
+
 yum install -y curl
+
 yum install -y socat
 
 申请 SSL 证书，更换邮件及解析域名
 
 curl https://get.acme.sh | sh
+
 ~/.acme.sh/acme.sh --register-account -m xxxx@xxxx.xx
+
 ~/.acme.sh/acme.sh --issue -d xx.xxxx.xx --standalone
+
 ~/.acme.sh/acme.sh --installcert -d xx.xxxx.xx --key-file /root/private.key --fullchain-file /root/cert.crt
 
 安装 x-ui
