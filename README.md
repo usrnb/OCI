@@ -5,17 +5,25 @@
 Oracle Cloud 控制面板开放端口
 ROOT操作
 
-sudo su
+sudo -i
 
 处理预设规则，全部端口开放
 
-iptables -D INPUT -j REJECT --reject-with icmp-host-prohibited
+apt-get install -y iptables-persistent
 
-iptables -D FORWARD -j REJECT --reject-with icmp-host-prohibited
+systemctl stop ufw
+systemctl disable ufw
 
-/etc/init.d/netfilter-persistent save
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
+iptables -F
 
-/etc/init.d/netfilter-persistent reload
+iptables-save > /etc/iptables/rules.v4
+ip6tables-save > /etc/iptables/rules.v6
+
+systemctl enable netfilter-persistent
+systemctl start netfilter-persistent
 
 开启 BBR 加速并优化 VPS 设置
 
