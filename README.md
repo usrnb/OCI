@@ -59,7 +59,7 @@ bash <(curl -Ls https://raw.githubusercontent.com/vaxilu/x-ui/master/install.sh)
 
 设置入站列表即可
 
-## 适用于 Oracle Linux 7.9
+## 适用于 Oracle Linux 7.9 & centOS 7
 
 ROOT操作
 
